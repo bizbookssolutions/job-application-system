@@ -1,1 +1,26 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("https://YOUR_BACKEND_URL/apply", {
+        method: "POST",
+        body: formData
+      });
+
+      if (res.ok) {
+        alert("Application submitted successfully.");
+        form.reset();
+      } else {
+        alert("Submission failed. Try again.");
+      }
+    } catch (err) {
+      alert("Server error. Please try later.");
+    }
+  });
+});
 
